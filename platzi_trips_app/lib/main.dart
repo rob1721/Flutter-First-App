@@ -44,7 +44,14 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home es la estructura de la app, su composision
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Hola !!!"),
+        ),
+        body: Center(
+            child: Text("hola .l."),
+          ),
+      )// MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
