@@ -1,0 +1,13 @@
+imperativo = POO 
+    b.setColor(red)
+    b.clearChildren()
+    ViewC c3 = new ViewC(...)
+    b.add(c3)
+
+declarativo = DART
+    return viewB(
+        color: red,
+        child: ViewC(...)
+    )
+
+la programacion declarativa generalmente es un poco mas "legible" a lenguaje humano

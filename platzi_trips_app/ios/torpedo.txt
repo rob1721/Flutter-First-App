@@ -1,0 +1,2 @@
+lo mismo que android carpeta, pero para iOS
+    flutterAppDelegate, info, plist y todos los archivos que corresponden a un proyecto iOS

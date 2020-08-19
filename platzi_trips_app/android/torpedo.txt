@@ -1,0 +1,2 @@
+la carpeta android es:
+    la puesta de FlutterActivity, AndroidManifest y todos los archivos que corresponden a un proyecto android
