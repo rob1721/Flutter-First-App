@@ -1,0 +1,41 @@
+el analisis de los componentes se divide en containers, los cuales contienen sus propios componentes (imaginar que tiene forma de arbol, ver en pantalla grande para entender)
+asi es mas entendible y podemos comprender que elemento contiene a que subelemento
+
+                        CONTAINER
+                        ROW
+    COLUMN              COLUMN              COLUMN
+ICON    CONTAINER   ICON    CONTAINER   ICON    CONTAINER
+        TEXT                TEXT                TEXT
+
+una pequeña practica del layout (definiendo el layout del proyecto):
+HeaderAppBar
+    GradientBack
+        CardImageList
+            ListView
+                CardImage
+                    FloatingActionButton
+        Text
+ListView
+    DescriptionPlace
+        Column
+            Row
+                Text
+                StarsIcon
+        Column
+            Text
+        Column
+            NavigateButton
+    ReviewList
+        Text
+        Row
+            UserImage
+        Row
+            Column
+                Text
+            Column 
+                Row
+                    Text
+                Row
+                    StarsIcon
+                Row
+                    Text
