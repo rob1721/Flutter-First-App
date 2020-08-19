@@ -18,6 +18,7 @@ void main() {
 // StatelessWidget es el padre de los widgets
 // MyApp hereda de StatelessWidget
 class MyApp extends StatelessWidget {
+  bool isSwitched = false;
   // This widget is the root of your application.
   @override
   // ignore: todo
@@ -28,30 +29,54 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home es la estructura de la app, su composision
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Hola !!!"),
-        ),
-        body: Center(
-            child: Text("hola .l."),
+          leading: Switch(
+            value: isSwitched,
+            onChanged: (value) {
+                isSwitched = value;
+                print(isSwitched);
+            },
           ),
-      )// MyHomePage(title: 'Flutter Demo Home Page'),
+          title: Text("Segundo Reto !!!"),
+        ),
+        body: Stack(
+            children: <Widget>[
+              Container(
+                child: Image.network(
+                  'https://i.blogs.es/6c558d/luna-400mpx/1024_2000.jpg',
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Center(
+                child: Container(
+                  width: double.infinity,
+                    height: 50,
+                    color: Colors.red.withOpacity(0.50),
+                ),
+              ),
+              Center(
+                child: Container( 
+                  child: Text(
+                    'asdasdasd'.toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+      ),// MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
