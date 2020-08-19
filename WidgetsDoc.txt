@@ -4,3 +4,18 @@ Widgets Básicos como ej (hay mas en los marcadores guardados):
     Columna (columna)
     Stack (apilar en coordenadas x,y,z)
     Container (cajas un div)
+
+Widgets con estado (statefulWidgets):
+    significan que son elementos que los usuarios tienen interaccion (..o pueden interactuar de forma..) directa
+    checkbox
+    radio
+    slider
+    form
+
+Widgets con estado (statelessWidgets):
+    elementos sin posibilidad de interaccion (además de la visual)
+    icono
+    Texto
+    contenedor con color
+
+Widget es la clase big daddy
