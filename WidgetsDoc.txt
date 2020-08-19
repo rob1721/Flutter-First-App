@@ -1,0 +1,6 @@
+Widgets Básicos como ej (hay mas en los marcadores guardados):
+    Texto
+    Row (fila)
+    Columna (columna)
+    Stack (apilar en coordenadas x,y,z)
+    Container (cajas un div)
