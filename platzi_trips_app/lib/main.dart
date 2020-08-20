@@ -9,7 +9,7 @@
   // home es la estructura de la app, su composision
   // el scaffold se compone de la estructura de la app, (componentes)
 import 'package:flutter/material.dart';
-
+import 'description_place.dart';
 // hace que todo lo demas funcione, es tu método main
 void main() {
   runApp(MyApp());
@@ -18,7 +18,6 @@ void main() {
 // StatelessWidget es el padre de los widgets
 // MyApp hereda de StatelessWidget
 class MyApp extends StatelessWidget {
-  bool isSwitched = false;
   // This widget is the root of your application.
   @override
   // ignore: todo
@@ -35,48 +34,10 @@ class MyApp extends StatelessWidget {
       // home es la estructura de la app, su composision
       home: Scaffold(
         appBar: AppBar(
-          leading: Switch(
-            value: isSwitched,
-            onChanged: (value) {
-                isSwitched = value;
-                print(isSwitched);
-            },
-          ),
-          title: Text("Segundo Reto !!!"),
+          title: Text("asdasd"),
         ),
-        body: Stack(
-            children: <Widget>[
-              Container(
-                child: Image.network(
-                  'https://i.blogs.es/6c558d/luna-400mpx/1024_2000.jpg',
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Center(
-                child: Container(
-                  width: double.infinity,
-                    height: 50,
-                    color: Colors.red.withOpacity(0.50),
-                ),
-              ),
-              Center(
-                child: Container( 
-                  child: Text(
-                    'asdasdasd'.toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-
-            ],
-          ),
-      ),// MyHomePage(title: 'Flutter Demo Home Page'),
+        body: new DescriptionPlace(),
+      )
     );
   }
 }
