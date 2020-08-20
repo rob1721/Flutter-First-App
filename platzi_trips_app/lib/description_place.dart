@@ -35,7 +35,8 @@ class DescriptionPlace extends StatelessWidget {
         child: Text(
             descriptionDummy,
             style: TextStyle(
-              fontSize: 12.0,
+              fontFamily: "Lato",
+              fontSize: 16.0,
               fontWeight: FontWeight.normal,
               color: Colors.grey,
             ),
