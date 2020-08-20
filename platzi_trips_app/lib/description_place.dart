@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class DescriptionPlace extends StatelessWidget {
 
-  String descriptionDummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id nisl in ex eleifend mattis. Sed in auctor risus. Aliquam a viverra justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n\nDonec sit amet odio eget lorem lobortis blandit. Proin pulvinar mi sed lorem hendrerit, vitae feugiat nunc rhoncus";
+  String namePlace;
+  int stars;
+  String descriptionPlace;
+
+  // constructor
+  DescriptionPlace(this.namePlace, this.stars, this.descriptionPlace);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +28,30 @@ class DescriptionPlace extends StatelessWidget {
       ),
     );
 
+    final starHalf = Container(
+      margin: EdgeInsets.only(
+        top: 323.0,
+        right: 3.0
+      ),
+
+      child: Icon(
+        Icons.star_half,
+        color: Color(0xFFf2c611),
+      ),
+    );
+
+    final starBorder = Container(
+      margin: EdgeInsets.only(
+        top: 323.0,
+        right: 3.0
+      ),
+
+      child: Icon(
+        Icons.star_border,
+        color: Color(0xFFf2c611),
+      ),
+    );
+
     final description = Align(
       alignment: Alignment.centerLeft,
       child:
@@ -33,9 +62,10 @@ class DescriptionPlace extends StatelessWidget {
           left: 20,
         ),
         child: Text(
-            descriptionDummy,
+            descriptionPlace,
             style: TextStyle(
-              fontSize: 12.0,
+              fontFamily: "Lato",
+              fontSize: 16.0,
               fontWeight: FontWeight.normal,
               color: Colors.grey,
             ),
@@ -58,8 +88,9 @@ class DescriptionPlace extends StatelessWidget {
           ),
 
           child: Text(
-            "Robertobleh",
+            namePlace,
             style: TextStyle(
+              fontFamily: "Lato",
               fontSize: 30.0,
               fontWeight: FontWeight.w900
             ),
@@ -72,8 +103,8 @@ class DescriptionPlace extends StatelessWidget {
             star,
             star,
             star,
-            star,
-            star
+            starHalf,
+            starBorder
           ]
         )
 

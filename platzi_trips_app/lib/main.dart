@@ -17,7 +17,10 @@ void main() {
 
 // StatelessWidget es el padre de los widgets
 // MyApp hereda de StatelessWidget
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
+
+    String descriptionDummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat.\n\nQuis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
   // This widget is the root of your application.
   @override
   // ignore: todo
@@ -36,7 +39,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("asdasd"),
         ),
-        body: new DescriptionPlace(),
+        body: new DescriptionPlace("Bahamas", 4, descriptionDummy),
       )
     );
   }
