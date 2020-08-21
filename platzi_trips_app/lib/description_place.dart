@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 // ignore: must_be_immutable
 class DescriptionPlace extends StatelessWidget {
 
@@ -15,7 +14,7 @@ class DescriptionPlace extends StatelessWidget {
     // ignore: todo
     // TODO: implement build
 
-    // declarando las estrellas
+    //-------------------declarando las estrellas
     final star = Container( // margenes
       margin: EdgeInsets.only(
         top: 323.0,
@@ -40,6 +39,7 @@ class DescriptionPlace extends StatelessWidget {
       ),
     );
 
+    // -------------------------------STARBORDER
     final starBorder = Container(
       margin: EdgeInsets.only(
         top: 323.0,
@@ -51,7 +51,7 @@ class DescriptionPlace extends StatelessWidget {
         color: Color(0xFFf2c611),
       ),
     );
-
+    // -------------------------------DESCRIPTION
     final description = Align(
       alignment: Alignment.centerLeft,
       child:
@@ -67,19 +67,20 @@ class DescriptionPlace extends StatelessWidget {
               fontFamily: "Lato",
               fontSize: 16.0,
               fontWeight: FontWeight.normal,
-              color: Colors.grey,
+              // color: Colors.grey,
             ),
             textAlign: TextAlign.left,
           ),
         )
     );
     
-    Container(
+   /* Container(
       
-      );
-
+      );*/
     final titleStars = Row (
+     
       children: <Widget>[
+        
         Container (
           margin: EdgeInsets.only(
             top: 320.0,
