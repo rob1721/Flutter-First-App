@@ -19,7 +19,7 @@ class GradientBackground extends StatelessWidget {
           ],
           // juega con los numeros
           begin: FractionalOffset(0.2, 0.4),
-          end: FractionalOffset(0.4, 3),
+          end: FractionalOffset(0.4, 3.5),
           //begin: FractionalOffset(0.2, 0.0),
           //end: FractionalOffset(0.8, 0.6),
           stops: [0.0, 0.6], // orientacion del gradiente

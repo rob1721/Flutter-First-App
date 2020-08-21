@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'button_purple.dart';
 // ignore: must_be_immutable
 class DescriptionPlace extends StatelessWidget {
 
@@ -114,9 +115,12 @@ class DescriptionPlace extends StatelessWidget {
     );
 
     return Column( // acá es donde se asignan las columnas
+      // se alinea lo que no venga de aca, hacia la izq, ya que por inicio, viene alineado al centro
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         titleStars,
         description,
+        ButtonPurple("Navigate"),
       ]
     );
   }

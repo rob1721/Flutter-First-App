@@ -1,2 +1,5 @@
 en esta carpeta encontramos todos los archivos que corresponden a DART, acá es donde vive la aplucación Flutter.
     Es el código que se estará compartiendo en ambos sistemas operativos (Android + iOS)
+
+revisar el contenido de containers, el llamado de estos
+revisar la accion de llamar las estrellas del sector
