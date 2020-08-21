@@ -9,9 +9,10 @@
   // home es la estructura de la app, su composision
   // el scaffold se compone de la estructura de la app, (componentes)
 import 'package:flutter/material.dart';
+
 import 'description_place.dart';
 import 'review_list.dart';
-import 'gradient_background.dart';
+import 'header_appbar.dart';
 //quitando la barra de arriba en android
 import 'package:flutter/services.dart';
 // hace que todo lo demas funcione, es tu método main
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
             ),
             //a grandes rasgos nuestro appbar
             //es nuestro gradiente
-            GradientBackground(title),
+            HeaderAppBar(),
           ],
         ),
       ),
