@@ -29,7 +29,7 @@ class Review extends StatelessWidget {
         textAlign: TextAlign.left,
         style: TextStyle(
           fontFamily: "Lato",
-          fontSize: 11.0,
+          fontSize: 13.0,
           fontWeight: FontWeight.w900,
           //color: Color(0xFFa3a5a7),
         ),
@@ -49,7 +49,7 @@ class Review extends StatelessWidget {
             textAlign: TextAlign.left,
             style: TextStyle(
               fontFamily: "Lato",
-              fontSize: 11.0,
+              fontSize: 13.0,
               color: Color(0xFFa3a5a7),
             ),
           ),
@@ -73,7 +73,7 @@ class Review extends StatelessWidget {
         // A NUEVAS FONTS
         style: TextStyle(
           fontFamily: "Lato",
-          fontSize: 14.0,
+          fontSize: 15.0,
         ),
       ),
     );
