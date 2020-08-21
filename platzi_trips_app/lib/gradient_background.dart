@@ -14,7 +14,7 @@ class GradientBackground extends StatelessWidget {
           colors: [
             // desde el tono mas arriba hasta el mas abajo
             Color(0xFF4268D3),
-            //Color(0XFF584CD1),
+            //Color(0XFF584CD1), color original medio morado
             Color(0X00A321),
           ],
           // juega con los numeros
