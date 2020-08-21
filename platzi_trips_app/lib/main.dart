@@ -10,6 +10,10 @@
   // el scaffold se compone de la estructura de la app, (componentes)
 import 'package:flutter/material.dart';
 import 'description_place.dart';
+import 'review_list.dart';
+import 'gradient_background.dart';
+//quitando la barra de arriba en android
+import 'package:flutter/services.dart';
 // hace que todo lo demas funcione, es tu método main
 void main() {
   runApp(MyApp());
@@ -21,12 +25,22 @@ void main() {
 class MyApp extends StatelessWidget {
 
     String descriptionDummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat.\n\nQuis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    String title = "Popular";
   // This widget is the root of your application.
   @override
+  //quitando la barra de arriba en android
   // ignore: todo
   // TODO ES UN WIDGET
   // método build se encarga de construir en el Widget llamado MyApp todo lo de adentro
   Widget build(BuildContext context) {
+    //PONIENDO TRANSPARENTE LA BARRA 
+    //DE ARRIBA EN ANDROID
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light
+      )
+    );
     // return MaterialApp toma todos los elementos de material design
     return MaterialApp(
       title: 'Flutter Demo',
@@ -35,12 +49,26 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home es la estructura de la app, su composision
+        // Scafold es como una pestaña
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("asdasd"),
+        
+        //body: DescriptionPlace("Bahamas", 5, descriptionDummy),
+        body: Stack( // pon uno encima de otro
+          children: <Widget>[
+            ListView(
+              children: <Widget>[
+                // DescriptionPlace está sobre ReviewList
+                DescriptionPlace("Bahamas", 5, descriptionDummy),
+                ReviewList()
+
+              ],
+            ),
+            //a grandes rasgos nuestro appbar
+            //es nuestro gradiente
+            GradientBackground(title),
+          ],
         ),
-        body: new DescriptionPlace("Bahamas", 4, descriptionDummy),
-      )
+      ),
     );
   }
 }
