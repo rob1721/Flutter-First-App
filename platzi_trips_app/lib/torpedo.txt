@@ -3,3 +3,49 @@ en esta carpeta encontramos todos los archivos que corresponden a DART, acá es 
 
 revisar el contenido de containers, el llamado de estos
 revisar la accion de llamar las estrellas del sector
+
+
+//----------------------------------StatefulWidget
+para la creacion de un StatefulWidget
+class Example extends StatefulWidget {
+    @override
+    State<StatefulWidget> createdState() {
+        return _Example();
+    }
+}
+// _Example hereda de Example
+// aca se construye lo q usaremos
+class _Example extends State<Example> {
+    .
+    .
+    .
+    Widget build(BuildContext context){
+        // colocando el Widget q queremos q tenga estado
+        return Scaffold(
+            body: widgetsChildren[indexTap],
+            // bottomNavigationBar es el widget con estado
+            bottomNavigationBar: Theme(
+                
+                data: Theme.of(context).copyWith(
+                    canvasColor: Colors.white,
+                    primaryColor: Colors.purple
+                ),
+                // propiedad de comportamiento (onTapTapped) cuando el estado cambie
+                child: BottomNavigationBar (
+                    onTap: onTapTapped,
+                    currentIndex: indexTap,
+                )
+            )
+        )
+    }
+    // llamada de ese comportamiento
+    //se detecta el cambio, la interaccion
+    //y automaticamente se gatilla
+    //lo q queremos q ejecute el boton 
+    //cuando cambie de estado 
+    void onTapTapped(int index){
+        setState(() {
+            indexTap = index;
+        });
+    }
+}
