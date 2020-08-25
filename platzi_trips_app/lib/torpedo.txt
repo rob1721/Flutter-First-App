@@ -9,8 +9,9 @@ revisar la accion de llamar las estrellas del sector
 para la creacion de un StatefulWidget
 class Example extends StatefulWidget {
     @override
+    //con esto se controla wl widget
     State<StatefulWidget> createdState() {
-        return _Example();
+        return _Example();  
     }
 }
 // _Example hereda de Example
@@ -19,6 +20,7 @@ class _Example extends State<Example> {
     .
     .
     .
+    @override
     Widget build(BuildContext context){
         // colocando el Widget q queremos q tenga estado
         return Scaffold(
@@ -45,6 +47,7 @@ class _Example extends State<Example> {
     //cuando cambie de estado 
     void onTapTapped(int index){
         setState(() {
+            // en caso de poner un boton, aca se agrega lo q queremos q haga el apretar ese boton
             indexTap = index;
         });
     }
