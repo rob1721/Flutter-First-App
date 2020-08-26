@@ -9,7 +9,9 @@
   // home es la estructura de la app, su composision
   // el scaffold se compone de la estructura de la app, (componentes)
 import 'package:flutter/material.dart';
-
+import 'package:platzi_trips_app/platzi_trips_cupertino.dart';
+import 'platzi_trips.dart';
+import 'platzi_trips_cupertino.dart';
 //quitando la barra de arriba en android
 import 'package:flutter/services.dart';
 // hace que todo lo demas funcione, es tu método main
@@ -47,7 +49,8 @@ class MyApp extends StatelessWidget {
       ),
       // home es la estructura de la app, su composision
         // Scafold es como una pestaña
-      //home: 
+      home: PlatziTrips(),
+      // PlatziTripsCupertino(), es lo mismo q PlatziTrips pero para ios
     );
   }
 }
