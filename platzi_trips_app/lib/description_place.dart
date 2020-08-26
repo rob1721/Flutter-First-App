@@ -120,6 +120,7 @@ class DescriptionPlace extends StatelessWidget {
       children: <Widget>[
         titleStars,
         description,
+        // se puede retornar el constructor directo
         ButtonPurple("Navigate"),
       ]
     );

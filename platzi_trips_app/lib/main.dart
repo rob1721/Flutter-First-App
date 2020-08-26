@@ -9,10 +9,9 @@
   // home es la estructura de la app, su composision
   // el scaffold se compone de la estructura de la app, (componentes)
 import 'package:flutter/material.dart';
-
-import 'description_place.dart';
-import 'review_list.dart';
-import 'header_appbar.dart';
+import 'package:platzi_trips_app/platzi_trips_cupertino.dart';
+import 'platzi_trips.dart';
+import 'platzi_trips_cupertino.dart';
 //quitando la barra de arriba en android
 import 'package:flutter/services.dart';
 // hace que todo lo demas funcione, es tu método main
@@ -25,7 +24,6 @@ void main() {
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
 
-    String descriptionDummy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat.\n\nQuis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     String title = "Popular";
   // This widget is the root of your application.
   @override
@@ -51,25 +49,8 @@ class MyApp extends StatelessWidget {
       ),
       // home es la estructura de la app, su composision
         // Scafold es como una pestaña
-      home: Scaffold(
-        
-        //body: DescriptionPlace("Bahamas", 5, descriptionDummy),
-        body: Stack( // pon uno encima de otro
-          children: <Widget>[
-            ListView(
-              children: <Widget>[
-                // DescriptionPlace está sobre ReviewList
-                DescriptionPlace("Bahamas", 5, descriptionDummy),
-                ReviewList()
-
-              ],
-            ),
-            //a grandes rasgos nuestro appbar
-            //es nuestro gradiente
-            HeaderAppBar(),
-          ],
-        ),
-      ),
+      home: PlatziTrips(),
+      // PlatziTripsCupertino(), es lo mismo q PlatziTrips pero para ios
     );
   }
 }
