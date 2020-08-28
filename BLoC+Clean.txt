@@ -1,0 +1,28 @@
+BLoC patron:
+
+    -vista: contendra toda la interaccion con las vistas, se subdivide en screens y en widgets
+
+    -BLoC (logica del negocio): definiremos todos los casos de uso de la app (si un usuario tiene ciertas acciones (ejemplo: registro, login, logout)) 
+
+    -repositorio: aca se ponen las clases que se conectan con la base de datos (ej: un login en firebase, API) 
+
+    -data/model: el shapeado de las entidades (ej: user tiene avatar nombre rut, decorados)
+
+Clean Architecture
+    separar en carpetas las entidades
+     representativas 
+     
+     
+     
+para luego aplicar BLoC hacia adentro de esas carpetas
+ej:
+    lib/Place
+    lib/User/bloc
+    lib/User/repository
+    lib/User/model?
+    lib/User/ui
+            /screens
+            /widgets
+    lib/shared
+            /widgets
+            /model

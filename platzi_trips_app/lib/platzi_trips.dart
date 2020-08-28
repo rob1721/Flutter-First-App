@@ -1,17 +1,17 @@
 //aca vamos a contener toda la logica, toda la app
 //la cual sera llamada en el main en lugar del body/scaffold
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import 'home_trips.dart';
-import 'search_trips.dart';
-import 'profile_trips.dart';
+import 'package:platzi_trips_app/Place/ui/screens/home_trips.dart';
+import 'package:platzi_trips_app/Place/ui/screens/search_trips.dart';
+import 'package:platzi_trips_app/User/ui/screens/profile_trips.dart';
 
 class PlatziTrips extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _PlatziTrips();
   }
-  
 }
 
 class _PlatziTrips extends State<PlatziTrips>{
@@ -34,7 +34,13 @@ class _PlatziTrips extends State<PlatziTrips>{
 
   @override
   Widget build(BuildContext context) {
-
+    
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light
+      )
+    );
     
     return Scaffold(
       //añadiendo los taps q queremos
@@ -43,7 +49,7 @@ class _PlatziTrips extends State<PlatziTrips>{
         bottomNavigationBar: Theme(
           data: Theme.of(context).copyWith(
             canvasColor: Colors.white,
-            primaryColor: Colors.transparent
+            primaryColor: Colors.indigo
           ), //la diferencia q queremos
           child: BottomNavigationBar(
             //q sucedera cuando alguien le de TAP

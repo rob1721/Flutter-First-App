@@ -8,12 +8,17 @@
   // return MaterialApp toma todos los elementos de material design
   // home es la estructura de la app, su composision
   // el scaffold se compone de la estructura de la app, (componentes)
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:platzi_trips_app/platzi_trips_cupertino.dart';
 import 'platzi_trips.dart';
+// ignore: unused_import
 import 'platzi_trips_cupertino.dart';
 //quitando la barra de arriba en android
 import 'package:flutter/services.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
+
 // hace que todo lo demas funcione, es tu método main
 void main() {
   runApp(MyApp());
@@ -32,25 +37,17 @@ class MyApp extends StatelessWidget {
   // TODO ES UN WIDGET
   // método build se encarga de construir en el Widget llamado MyApp todo lo de adentro
   Widget build(BuildContext context) {
-    //PONIENDO TRANSPARENTE LA BARRA 
-    //DE ARRIBA EN ANDROID
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarBrightness: Brightness.light
-      )
-    );
-    // return MaterialApp toma todos los elementos de material design
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return BlocProvider(
+      //q widget hijo quiero exponer
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        // home es la estructura de la app, su composision
+          // Scafold es como una pestaña
+        home: PlatziTrips(),
+        // PlatziTripsCupertino(), es lo mismo q PlatziTrips pero para ios
       ),
-      // home es la estructura de la app, su composision
-        // Scafold es como una pestaña
-      home: PlatziTrips(),
-      // PlatziTripsCupertino(), es lo mismo q PlatziTrips pero para ios
+      //q bloc expondremos
+      bloc: UserBloc(),
     );
   }
 }
