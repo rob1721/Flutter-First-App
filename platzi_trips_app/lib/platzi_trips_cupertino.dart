@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 //cupertino = version + nativa de iOs
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
-import 'home_trips.dart';
-import 'search_trips.dart';
-import 'profile_trips.dart';
+import 'package:platzi_trips_app/Place/ui/screens/home_trips.dart';
+import 'package:platzi_trips_app/Place/ui/screens/search_trips.dart';
+import 'package:platzi_trips_app/User/ui/screens/profile_trips.dart';
 
 class PlatziTripsCupertino extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light
+      )
+    );
+
     return Scaffold(
       bottomNavigationBar: CupertinoTabScaffold(
         //--------------------------------tabBar
