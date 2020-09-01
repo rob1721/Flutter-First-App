@@ -8,6 +8,7 @@
   // return MaterialApp toma todos los elementos de material design
   // home es la estructura de la app, su composision
   // el scaffold se compone de la estructura de la app, (componentes)
+// ignore: unused_import
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import 'platzi_trips.dart';
 // ignore: unused_import
 import 'platzi_trips_cupertino.dart';
 //quitando la barra de arriba en android
+// ignore: unused_import
 import 'package:flutter/services.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
