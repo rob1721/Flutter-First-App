@@ -2,7 +2,7 @@
 // ignore: unused_import
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
-class PlaceBloc impelements Bloc {
+class PlaceBloc implements Bloc {
   
   @override
   // ignore: unused_element
