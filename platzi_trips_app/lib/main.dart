@@ -12,14 +12,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'platzi_trips.dart';
 // ignore: unused_import
 import 'platzi_trips_cupertino.dart';
 //quitando la barra de arriba en android
-// ignore: unused_import
 import 'package:flutter/services.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
+import 'package:platzi_trips_app/User/ui/screens/sign_in_screen.dart';
 
 // hace que todo lo demas funcione, es tu método main
 void main() {
@@ -34,18 +35,26 @@ class MyApp extends StatelessWidget {
     String title = "Popular";
   // This widget is the root of your application.
   @override
-  //quitando la barra de arriba en android
+  
   // ignore: todo
   // TODO ES UN WIDGET
   // método build se encarga de construir en el Widget llamado MyApp todo lo de adentro
   Widget build(BuildContext context) {
+    //quitando la barra de arriba en android
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light
+      )
+    );
+
     return BlocProvider(
       //q widget hijo quiero exponer
       child: MaterialApp(
         title: 'Flutter Demo',
         // home es la estructura de la app, su composision
           // Scafold es como una pestaña
-        home: PlatziTrips(),
+        home: SignInScreen(),
         // PlatziTripsCupertino(), es lo mismo q PlatziTrips pero para ios
       ),
       //q bloc expondremos
