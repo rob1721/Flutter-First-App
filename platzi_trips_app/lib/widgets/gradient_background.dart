@@ -6,10 +6,27 @@ class GradientBackground extends StatelessWidget {
   // definiendo la altura del background
   double height = 0.0;
 
-  GradientBackground(this.title, this.height);
+  // constructor
+  
+  GradientBackground({
+    Key key,
+    this.height
+  });
+
   @override
   Widget build(BuildContext context) {
+
+    // altura de cualquier celular!!!
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidht = MediaQuery.of(context).size.width;
+
+    // flag para height = null -> full screen
+    if (height == null) {
+      height = screenHeight;
+    }
+
     return Container(
+      width: screenWidht,
       height: height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -29,7 +46,19 @@ class GradientBackground extends StatelessWidget {
         )
       ),
 
-      child: Text(
+      child: FittedBox(
+        fit: BoxFit.none,
+        alignment: Alignment(-1.5, -0.8),
+        child: Container(
+          width: screenWidht,
+          height: screenHeight,
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(0, 0, 0, 0.05),
+            borderRadius: BorderRadius.circular(screenHeight / 2),
+          ),
+        )
+      )
+      /*Text(
         title,
         style: TextStyle(
           color: Colors.white,
@@ -37,9 +66,9 @@ class GradientBackground extends StatelessWidget {
           fontFamily: "Lato",
           fontWeight: FontWeight.bold
         ),
-      ),
+      ),*/
       //alineacion del texto
-      alignment: Alignment(-0.9, -0.6),
+      //alignment: Alignment(-0.9, -0.6),
     );
   }
 }
