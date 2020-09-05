@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:platzi_trips_app/widgets/gradient_background.dart';
+import 'package:platzi_trips_app/widgets/title_header.dart';
 
 // ignore: must_be_immutable
 class AddPlaceScreen extends StatefulWidget {
@@ -21,8 +22,12 @@ class AddPlaceScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreen extends State<AddPlaceScreen> {
+  // evitando el desborde de texto
+  double screenWidht;
   @override
   Widget build(BuildContext context) {
+    // evitando el desborde de texto
+    screenWidht = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -46,7 +51,18 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   ), 
                 ),
               ),
-            ]
+              // evitando el desborde de texto
+              Flexible(
+                child: Container(
+                  // evitando el desborde de texto
+                  width: screenWidht,
+                  child: Container(
+                    padding: EdgeInsets.only(top: 45.0, left: 20.0, right: 10.0),
+                    child: TitleHeader(title: "Add a new Place"),
+                  ),
+                ),
+              ),
+            ],
           ),
         ]
       ),
