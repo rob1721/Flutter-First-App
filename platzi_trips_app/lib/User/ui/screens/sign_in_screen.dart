@@ -56,7 +56,7 @@ class _SignInScreen extends State<SignInScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          GradientBackground("", null), //altura null = FULLSCREEN
+          GradientBackground(height: null), //altura null = FULLSCREEN
           Column(
             //centrando posicion alineando
             mainAxisAlignment: MainAxisAlignment.center,
