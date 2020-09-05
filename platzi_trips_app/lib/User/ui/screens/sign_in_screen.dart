@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:platzi_trips_app/User/model/user.dart';
 import 'package:platzi_trips_app/platzi_trips_cupertino.dart';
 
 import 'package:platzi_trips_app/widgets/gradient_background.dart';
@@ -73,7 +74,19 @@ class _SignInScreen extends State<SignInScreen> {
                   //no obtenidno correctamente los datos
                   userBloc.signOut();
                   //definiendo su comportamiento aca..
-                  userBloc.signIn().then((auth.User user) => print("El usuario es: ${user.displayName}"));
+                  userBloc.signIn().then(
+                    (auth.User user) {
+                      print("El usuario es: ${user.displayName}");
+                      userBloc.updateUserData(
+                        User(
+                          uid: user.uid,
+                          name: user.displayName,
+                          email: user.email,
+                          photoURL: user.photoURL,
+                        )
+                      );
+                    },
+                  );
                 },
                 width: 300.0,
                 height: 50.0,
