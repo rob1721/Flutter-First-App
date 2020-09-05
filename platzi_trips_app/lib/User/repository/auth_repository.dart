@@ -7,4 +7,7 @@ class AuthRepository {
 
   //implementado la capa de datos para firebase_auth_api
   Future<auth.User> signInFirebase() => _firebaseAuthAPI.signIn();
+
+  signOut() => _firebaseAuthAPI.signOut();
+  
 }

@@ -1,3 +1,4 @@
+// lista de lugares
 import 'package:flutter/material.dart';
 import 'profile_header.dart';
 import 'package:platzi_trips_app/User/ui/widgets/profile_places_list.dart';

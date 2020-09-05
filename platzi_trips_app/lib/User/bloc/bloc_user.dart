@@ -1,6 +1,9 @@
 //autenticarse, escribir un lugar, dar me gusta, etc...
 // ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart'as auth;
+
+// ignore: unused_import
+import 'package:firebase_core/firebase_core.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/User/repository/auth_repository.dart';
 
@@ -22,8 +25,10 @@ class UserBloc implements Bloc {
   Future<auth.User> signIn() async {
     return await _auth_repository.signInFirebase();
   }
-  }
-    // caso 2.- 
+    // caso 2.- casos de uso del usuario
+    signOut() {
+      _auth_repository.signOut();
+    }
 
   @override
   // ignore: unused_element
