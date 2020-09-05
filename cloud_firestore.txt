@@ -1,0 +1,6 @@
+para agregar la cloud de firestore
+ojo que para crearla nos preguntara si queremos
+hacer la app en modo produccion o en modo desarrollo (o algo asi..)
+el modo produccion, no nos dara permiso para usar el codigo e implementar en la bd..
+para ello debes cambiar "false" por "request != null"
+para asi lograr que los q están subiendo data (una foto o algo..) puedan subirlas a la bd
