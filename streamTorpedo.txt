@@ -1,0 +1,8 @@
+los streams son los datos q viven entre la base de datos y la app
+entonces "streamController" q ademas de tener acceso a los datos, nos permite manipularlo
+el metodo para agregar datos se llama "sink"
+luego se reciben los datos cuando hayan llegado
+en el streamBuilder y los comunicará mostrará en la interfaz
+
+ejemplo: "hola" viaja por "stream"
+con "sink" agregamos "mundo" y luego en "streamBuilder" se llama un widget "Text" q mostrará "hola mundo"
