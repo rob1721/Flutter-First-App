@@ -21,11 +21,14 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreen extends State<SignInScreen> {
 
   UserBloc userBloc; // se necesita instanciar..
-   
+  // variable de ancho de pantalla
+  double screenWidht;
 
   @override
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of(context);// instanciando userBloc
+    // variable de ancho de pantalla
+    screenWidht = MediaQuery.of(context).size.width;
     return _handleCurrentSession();
   }
 
@@ -61,14 +64,22 @@ class _SignInScreen extends State<SignInScreen> {
             //centrando posicion alineando
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("Welcome \n This is your Travel App",
-                style: TextStyle(
-                  fontSize: 37.0,
-                  fontFamily: "Lato",
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
+              Flexible(
+                child: Container(
+                  // dando el tamaño designado para el texto para q cada pantalla se la pueda
+                  width: screenWidht,
+                  child: Text(
+                    "Welcome \n This is your Travel App",
+                    style: TextStyle(
+                      fontSize: 37.0,
+                      fontFamily: "Lato",
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
                 ),
               ),
+              
               ButtonGreen(text: "Login with Gmail",
                 onPressed: () {
                   //no obtenidno correctamente los datos
