@@ -1,4 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
 
 class CloudFirestoreAPI {
@@ -6,13 +9,16 @@ class CloudFirestoreAPI {
   // ignore: non_constant_identifier_names
   final String USERS = "users";
   // ignore: non_constant_identifier_names
-  final String PLACE = "place";
+  final String PLACES = "places";
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  // consultando el user logueado
+  final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance; // toda la autentificacion la trae en instance
   
   void updateUserData(User user) async {
     DocumentReference ref = _db.collection(USERS).doc(user.uid); //obteniendo el identificador
-    return ref.set({
+
+    return await ref.set({
       // no es necesario poner key aca, pq proviene de atras (analizar cada modelo)
       'uid': user.uid,
       'name': user.name,
@@ -23,5 +29,22 @@ class CloudFirestoreAPI {
       'lastSignIn': DateTime.now(),
 
     }, SetOptions(merge: true));
+  }
+
+  Future<void> updatePlaceDate(Place place) async {
+    // accediendo a la data para subir un place
+    CollectionReference refPlaces = _db.collection(PLACES);
+    auth.User user = _auth.currentUser;
+    // consultando el user logueado
+    await 
+      refPlaces.add({
+        // definiendo los keys de la data (q es lo q queremos)
+        'name' : place.name,
+        'description' : place.description,
+        'likes' : place.likes,
+        // tipo de dato User 
+        'userOwner' : "${USERS}/${user.uid}", // reference..
+      });
+    
   }
 }
