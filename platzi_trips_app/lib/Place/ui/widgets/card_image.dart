@@ -6,7 +6,7 @@ class CardImageWithFABIcon extends StatelessWidget {
 
   final double height; // los datos requeridos deben estar en final
   final double width;
-  double left = 20.0;
+  final double left;
   final String pathImage;
   final VoidCallback onPressedFABIcon; // FAB FloatingActionButton
   final IconData iconData;
@@ -18,6 +18,7 @@ class CardImageWithFABIcon extends StatelessWidget {
     @required this.height,
     @required this.onPressedFABIcon,
     @required this.iconData,
+    this.left
   });
 
   @override

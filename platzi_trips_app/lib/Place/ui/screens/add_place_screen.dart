@@ -88,12 +88,14 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                     pathImage: "assets/img/s.jpg",// widget.image.path,
                     width: 350.0,
                     height: 250.0,
+                    left: 0,
                     //onPressedFABIcon: null,
                     iconData: Icons.camera_enhance,
                   ),
                 ),
                 Container(/*TextField Title*/
                   margin: EdgeInsets.only(
+                    top: 20.0,
                     bottom: 20.0,  
                   ),
                   // el form:
