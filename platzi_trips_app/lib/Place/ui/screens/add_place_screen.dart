@@ -3,8 +3,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/title_input_location.dart';
+import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
 import 'package:platzi_trips_app/widgets/button_purple.dart';
 
 import 'package:platzi_trips_app/widgets/gradient_background.dart';
@@ -30,6 +33,8 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
   double screenWidht;
   @override
   Widget build(BuildContext context) {
+
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     // usando la variable controller para capturar datos del input (uno para cada input q se use)
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
@@ -85,6 +90,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
               children: <Widget>[
                 Container(/*FOTO!*/
                   alignment: Alignment.center,
+                  // ignore: missing_required_param
                   child: CardImageWithFABIcon(
                     pathImage: "assets/img/s.jpg",// widget.image.path,
                     width: 350.0,
@@ -134,6 +140,17 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                       // devolvera una url de la imagen
                       // 2) con cloud firestore
                       // incertamos el place (title, description, imgurl, userOwner, likes)
+                      userBloc.updatePlaceData(
+                        // ignore: missing_required_param
+                        Place(
+                          name: _controllerTitlePlace.text,
+                          description: _controllerDescriptionPlace.text,
+                          likes: 0,
+                        )
+                      ).whenComplete(() {
+                        print("Terminó");
+                        Navigator.pop(context);
+                      });
                     }
                   ),
                 ),

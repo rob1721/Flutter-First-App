@@ -31,7 +31,7 @@ class CloudFirestoreAPI {
     }, SetOptions(merge: true));
   }
 
-  Future<void> updatePlaceDate(Place place) async {
+  Future<void> updatePlaceData(Place place) async {
     // accediendo a la data para subir un place
     CollectionReference refPlaces = _db.collection(PLACES);
     auth.User user = _auth.currentUser;
@@ -43,6 +43,7 @@ class CloudFirestoreAPI {
         'description' : place.description,
         'likes' : place.likes,
         // tipo de dato User 
+        // ignore: unnecessary_brace_in_string_interps
         'userOwner' : "${USERS}/${user.uid}", // reference..
       });
     
