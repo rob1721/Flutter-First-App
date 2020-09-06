@@ -5,7 +5,7 @@ class TextInput extends StatelessWidget {
 
   // el texto q está en un form para tener una pista de q escribir..se le llama hint
   final String hintText; // texto flotante
-  final TextInputType inputType; // tipo a añadir
+  final TextInputType inputType; // tipo a añadir: numero/texto/email/web
   final TextEditingController controller; // trabajando formulario
   int maxLines = 1; // maximo de lineas
 

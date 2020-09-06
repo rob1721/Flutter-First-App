@@ -3,6 +3,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
+import 'package:platzi_trips_app/Place/ui/widgets/title_input_location.dart';
 
 import 'package:platzi_trips_app/widgets/gradient_background.dart';
 import 'package:platzi_trips_app/widgets/text_input.dart';
@@ -80,7 +82,16 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
             ),
             child: ListView(
               children: <Widget>[
-                Container(/*FOTO!*/),
+                Container(/*FOTO!*/
+                  alignment: Alignment.center,
+                  child: CardImageWithFABIcon(
+                    pathImage: "assets/img/s.jpg",// widget.image.path,
+                    width: 350.0,
+                    height: 250.0,
+                    //onPressedFABIcon: null,
+                    iconData: Icons.camera_enhance,
+                  ),
+                ),
                 Container(/*TextField Title*/
                   margin: EdgeInsets.only(
                     bottom: 20.0,  
@@ -99,6 +110,16 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   inputType: TextInputType.multiline,
                   maxLines: 4, // DA ALTURA IGUAL
                   controller: _controllerDescriptionPlace,
+                ),
+                Container( // location en container por el 
+                  margin: EdgeInsets.only(
+                    top: 20.0,  
+                  ),
+                  child: TextInputLocation( // ADD GPS LOCATION
+                    hintText: "Add Location",
+                    iconData: Icons.location_on,
+                    controller: null // HASTA AHORA NO LO PONEN
+                    ),
                 ),
               ],
             ),
