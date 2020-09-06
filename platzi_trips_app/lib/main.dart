@@ -56,6 +56,7 @@ class MyApp extends StatelessWidget {
       //q widget hijo quiero exponer
       child: MaterialApp(
         title: 'Flutter Demo',
+        //routes: {},
         // home es la estructura de la app, su composision
           // Scafold es como una pestaña
         home: SignInScreen(),

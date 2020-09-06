@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/title_input_location.dart';
@@ -17,7 +18,7 @@ import 'package:platzi_trips_app/widgets/title_header.dart';
 // ignore: must_be_immutable
 class AddPlaceScreen extends StatefulWidget {
 
-  File image;
+  File image; // hacer aca el cambio q se muestra en net
   // CONSTRUCTOR
   AddPlaceScreen({Key key, this.image});
 
@@ -40,7 +41,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
     final _controllerDescriptionPlace = TextEditingController();
 
     // evitando el desborde de texto
-    screenWidht = MediaQuery.of(context).size.width;
+    //screenWidht = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -68,7 +69,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
               Flexible(
                 child: Container(
                   // evitando el desborde de texto
-                  width: screenWidht,
+                  //width: screenWidht,
                   child: Container(
                     padding: EdgeInsets.only(
                       top: 45.0,
@@ -92,7 +93,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   alignment: Alignment.center,
                   // ignore: missing_required_param
                   child: CardImageWithFABIcon(
-                    pathImage: "assets/img/s.jpg",// widget.image.path,
+                    pathImage: widget.image.path,
                     width: 350.0,
                     height: 250.0,
                     left: 0,
@@ -127,7 +128,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   child: TextInputLocation( // ADD GPS LOCATION
                     hintText: "Add Location",
                     iconData: Icons.location_on,
-                    controller: null // HASTA AHORA NO LO PONEN
+                    //controller: null // HASTA AHORA NO LO PONEN
                     ),
                 ),
                 // boton

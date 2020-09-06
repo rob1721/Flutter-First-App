@@ -41,5 +41,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
+	<key>NSCameraUsageDescription</key>
+	<string>Platzi Trips quiere tomar una foto. ¿Podemos usar su cámara?</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Platzi Trips quiere tomar una foto. ¿Podemos usar su cámara?</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Platzi Trips quiere tomar una foto. ¿Podemos usar su cámara?</string>
 </dict>
 </plist>
