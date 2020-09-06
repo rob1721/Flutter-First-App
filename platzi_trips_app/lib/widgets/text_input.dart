@@ -47,6 +47,7 @@ class TextInput extends StatelessWidget {
             
           ),
           focusedBorder: OutlineInputBorder(
+            // quitando el color negro del borde y poniendo el mismo q el fondo del form
             borderSide: BorderSide(color: Color(0xFFe5e5e5)),
             borderRadius: BorderRadius.all(
               Radius.circular(9.0)
