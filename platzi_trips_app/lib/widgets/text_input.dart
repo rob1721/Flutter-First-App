@@ -1,6 +1,7 @@
 // esto es parecido a un form
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class TextInput extends StatelessWidget {
 
   // el texto q está en un form para tener una pista de q escribir..se le llama hint
