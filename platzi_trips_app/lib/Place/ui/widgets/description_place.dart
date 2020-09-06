@@ -122,7 +122,7 @@ class DescriptionPlace extends StatelessWidget {
         titleStars,
         description,
         // se puede retornar el constructor directo
-        ButtonPurple("Navigate"),
+        ButtonPurple(buttonText: "Navigate", onPressed: () {},),
       ]
     );
   }
