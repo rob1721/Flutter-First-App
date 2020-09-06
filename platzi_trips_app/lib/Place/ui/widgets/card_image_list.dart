@@ -22,12 +22,12 @@ class CardImageList extends StatelessWidget {
         //ACA PONIENDO TODOS LOS ELEMENTOS 
         //DE LA LISTA
         children: <Widget>[
-          CardImage("assets/img/a.jpg"),
-          CardImage("assets/img/s.jpg"),
-          CardImage("assets/img/d.jpg"),
-          CardImage("assets/img/f.jpg"),
-          CardImage("assets/img/g.jpg"),
-          CardImage("assets/img/h.jpg"),
+          CardImageWithFABIcon(pathImage: "assets/img/a.jpg", iconData: Icons.favorite_border),
+          CardImageWithFABIcon(pathImage: "assets/img/s.jpg", iconData: Icons.favorite_border),
+          CardImageWithFABIcon(pathImage: "assets/img/d.jpg", iconData: Icons.favorite_border),
+          CardImageWithFABIcon(pathImage: "assets/img/f.jpg", iconData: Icons.favorite_border),
+          CardImageWithFABIcon(pathImage: "assets/img/g.jpg", iconData: Icons.favorite_border),
+          CardImageWithFABIcon(pathImage: "assets/img/h.jpg", iconData: Icons.favorite_border),
         ],
 
       )
