@@ -1,0 +1,8 @@
+en firebase hay una seccion q cada bd tiene
+q se llama Storage, ahi es donde se almacena imagenes/informacion/videos etc..
+para poder usar storage, cada usuario tiene q estár autenticado 
+aparecera una URL que nos permitira acceso (su endpoint)
+
+como ya tenemos capturado el userID, podemos crear una carpeta con el userID determinado y asi subir un sistema de archivo
+
+todo se subira a traves de este codigo (no olvidar documentar!)
