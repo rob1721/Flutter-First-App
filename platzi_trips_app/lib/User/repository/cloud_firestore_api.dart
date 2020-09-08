@@ -43,8 +43,18 @@ class CloudFirestoreAPI {
         'likes' : place.likes,
         // tipo de dato User 
         // ignore: unnecessary_brace_in_string_interps
-        'userOwner' : "${USERS}/${user.uid}", // reference..
-      });
-    
+        'userOwner' : _db.doc("${USERS}/${user.uid}"),//"${USERS}/${user.uid}", // reference..
+      }).then((DocumentReference dr) => dr.get() // obteniendo la referencia del doc
+          .then((DocumentSnapshot snapshot) {
+            snapshot.id;
+            DocumentReference refUsers = _db.collection(USERS).doc(user.uid); //obtengo la data del id del usuario
+            refUsers.update({
+              'myPlaces' : FieldValue.arrayUnion([
+                _db.doc("${PLACES}/${snapshot.id}"), // pusheando la referencia del user con sus places
+              ]),
+            });
+          }),//then
+        );//then 
+             // obteniendo ID Place con referencia del array
   }
 }
