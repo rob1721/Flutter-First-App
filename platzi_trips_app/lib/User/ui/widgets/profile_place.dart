@@ -20,10 +20,10 @@ class ProfilePlace extends StatelessWidget {
           bottom: 70.0
       ),
       height: 220.0,
-      decoration: BoxDecoration(
+      decoration: BoxDecoration( // card de la imagen
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(place.urlImage),
+              image: NetworkImage(place.urlImage), //mostrando imagen
           ),
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           color: Colors.red,

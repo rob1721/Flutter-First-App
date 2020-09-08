@@ -2,6 +2,7 @@
 // ignore: unused_import
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'as auth;
 // ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
@@ -11,7 +12,9 @@ import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/Place/repository/firebase_storage_repository.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
 import 'package:platzi_trips_app/User/repository/auth_repository.dart';
+import 'package:platzi_trips_app/User/repository/cloud_firestore_api.dart';
 import 'package:platzi_trips_app/User/repository/cloud_firestore_repository.dart';
+import 'package:platzi_trips_app/User/ui/widgets/profile_place.dart';
 
 class UserBloc implements Bloc {
   // _auth_repository es la autentificacion q se hizo
@@ -40,6 +43,10 @@ class UserBloc implements Bloc {
   final _cloudFirestoreRepository = CloudFirestoreRepository();
   void updateUserData(User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
   Future<void> updatePlaceData(Place place) => _cloudFirestoreRepository.updatePlaceData(place);
+  Stream<QuerySnapshot> placesListStream = FirebaseFirestore.instance.collection(CloudFirestoreAPI().PLACES).snapshots(); //traeme una foto de todo lo q exista en la instancia de la base de datos cuya coleccion corresponda a places y escucha
+  // ahora poniendo otro stream para acceder al anterior
+  Stream<QuerySnapshot> get placesStream => placesListStream;
+  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
 
   // subiendo la imagen a firestore
   final _firebaseStorageRepository = FirebaseStorageRepository();
