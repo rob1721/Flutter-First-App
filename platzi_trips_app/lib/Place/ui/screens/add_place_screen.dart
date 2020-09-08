@@ -2,6 +2,8 @@
 // recibe la foto y la muestra
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,7 +19,7 @@ import 'package:platzi_trips_app/widgets/title_header.dart';
 
 // ignore: must_be_immutable
 class AddPlaceScreen extends StatefulWidget {
-
+  // file a subir
   File image; // hacer aca el cambio q se muestra en net
   // CONSTRUCTOR
   AddPlaceScreen({Key key, this.image});
@@ -39,13 +41,14 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
     // usando la variable controller para capturar datos del input (uno para cada input q se use)
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
-
+    
     // evitando el desborde de texto
     //screenWidht = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: <Widget>[
           GradientBackground(height: 300.0,),
+          
           Row( // flecha para atras + titulo
             children: <Widget>[
               Container(
@@ -94,11 +97,11 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   // ignore: missing_required_param
                   child: CardImageWithFABIcon(
                     pathImage: widget.image.path,
+                    iconData: Icons.camera_enhance,
                     width: 350.0,
                     height: 250.0,
                     left: 0,
                     //onPressedFABIcon: null,
-                    iconData: Icons.camera_enhance,
                   ),
                 ),
                 Container(/*TextField Title*/
@@ -137,22 +140,45 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   child: ButtonPurple(
                     buttonText: "Add Place",
                     onPressed: () {
-                      // 1) la imagen a firebase storage
-                      // devolvera una url de la imagen
-                      // 2) con cloud firestore
-                      // incertamos el place (title, description, imgurl, userOwner, likes)
-                      userBloc.updatePlaceData(
-                        // ignore: missing_required_param
-                        Place(
-                          name: _controllerTitlePlace.text,
-                          description: _controllerDescriptionPlace.text,
-                          likes: 0,
-                        )
-                      ).whenComplete(() {
-                        print("Terminó");
-                        Navigator.pop(context);
+                      
+                      // debemos tener la ID del usuario logueado actualmente
+                      userBloc.currentUser.then((auth.User user) {
+                        if (user != null) {
+                          String uid = user.uid;
+                          // path compuesto de id de user + nombre archivo (date)
+                          String path = "${uid}/${DateTime.now().toString()}.jpg"; // fijarse en la extension jpg
+                          // 1) la imagen a firebase storage
+                          // devolvera una url de la imagen
+                          // devolviendo la imagen desde el 
+                          userBloc.uploadFile(path, widget.image)
+                            .then((StorageUploadTask storagUploadTask) {// then devuelve la imagen subida
+                              storagUploadTask.onComplete
+                              .then((StorageTaskSnapshot snapshot) {// se obtienen los datos de la imagen
+                                snapshot.ref.getDownloadURL()
+                                .then((urlImage) {// se obtiene el urlImage
+                                  print("URLIMAGE: $urlImage"); // LO Q ESTAMOS OBTENIENDO
+
+                                  // 2) con cloud firestore
+                                  // incertamos el place (title, description, imgurl, userOwner, likes)
+                                  userBloc.updatePlaceData(
+                                    Place(
+                                      name: _controllerTitlePlace.text,
+                                      description: _controllerDescriptionPlace.text,
+                                      urlImage: urlImage.toString(), // LO Q ESTAMOS PASANDO
+                                      likes: 0,
+                                    )
+                                  ).whenComplete(() {
+                                    print("Terminó");
+                                    Navigator.pop(context);
+                                  }); // whenComplete
+
+                                });
+                              });
+                            });
+                        }
                       });
-                    }
+                      
+                    }, // onPressed
                   ),
                 ),
               ],

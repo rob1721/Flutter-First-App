@@ -30,11 +30,10 @@ class ButtonsBar extends StatelessWidget {
             // ojo q el valor key q podría haber necesitado en el '()'
             () => {}),
             // añadiendo un nuevo lugar
-            CircleButton(false, Icons.add, 40.0, Color.fromRGBO(255, 255, 255, 1),
-              () async {
-                final ImagePicker picker = ImagePicker();
-                final PickedFile pickedFile = await picker.getImage(source: ImageSource.camera);
-                final File image = File(pickedFile.path);
+            CircleButton(false, Icons.add, 40.0, Color.fromRGBO(255, 255, 255, 1), () async {
+                ImagePicker picker = ImagePicker();
+                PickedFile pickedFile = await picker.getImage(source: ImageSource.camera);
+                File image = File(pickedFile.path);
                 await Navigator.push( context, 
                   MaterialPageRoute(
                     builder: (BuildContext context) => AddPlaceScreen(image: image)

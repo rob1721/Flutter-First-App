@@ -17,7 +17,6 @@ class CloudFirestoreAPI {
   
   void updateUserData(User user) async {
     DocumentReference ref = _db.collection(USERS).doc(user.uid); //obteniendo el identificador
-
     return await ref.set({
       // no es necesario poner key aca, pq proviene de atras (analizar cada modelo)
       'uid': user.uid,
