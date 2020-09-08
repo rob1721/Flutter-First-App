@@ -1,8 +1,10 @@
+// usada para logica de negocio
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
+import 'package:platzi_trips_app/User/ui/widgets/profile_place.dart';
 
 class CloudFirestoreAPI {
   // variables en mayuscula, son constantes
@@ -41,6 +43,7 @@ class CloudFirestoreAPI {
         'name' : place.name,
         'description' : place.description,
         'likes' : place.likes,
+        'urlImage' : place.urlImage,
         // tipo de dato User 
         // ignore: unnecessary_brace_in_string_interps
         'userOwner' : _db.doc("${USERS}/${user.uid}"),//"${USERS}/${user.uid}", // reference..
@@ -56,5 +59,20 @@ class CloudFirestoreAPI {
           }),//then
         );//then 
              // obteniendo ID Place con referencia del array
+  }
+
+  // devolviendo la lista de places del user
+  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {
+    List<ProfilePlace> profilePlaces = List<ProfilePlace>(); //instanciada
+    placesListSnapshot.forEach((p /*p de places*/) {
+      profilePlaces.add(ProfilePlace(
+        Place(
+          name: p.data()['name'],
+          description: p.data()['description'],
+          urlImage: p.data()['urlImage'],
+        ),
+      ));
+    });
+    return profilePlaces;
   }
 }

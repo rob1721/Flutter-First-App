@@ -1,3 +1,4 @@
+// toda la info de la imagen
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/widgets/floating_action_button_green.dart';
@@ -30,7 +31,7 @@ class ProfilePlaceInfo extends StatelessWidget {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
+              /*Text(
                 // ----------------------name
                 this.place.name,
                 style: TextStyle(
@@ -39,7 +40,7 @@ class ProfilePlaceInfo extends StatelessWidget {
                     fontSize: 12.0,
                     fontWeight: FontWeight.bold
                 ),
-              ),
+              ),*/ // ya no se busca esto, ya q se agrega el nombre por otro lado
               Text(
                 // ----------------------description
                 this.place.description,
@@ -94,7 +95,7 @@ class ProfilePlaceInfo extends StatelessWidget {
       alignment: Alignment(0.8, 1.25),
       children: <Widget>[
         card,
-        FloatingActionButtonGreen(iconData: Icons.favorite_border)
+        FloatingActionButtonGreen(iconData: Icons.favorite_border, onPressed:(){},)
       ],
     );
   }

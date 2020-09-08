@@ -7,7 +7,7 @@ class Place {
   String description;
   String urlImage;
   int likes;
-  User userOwner;
+  //User userOwner; quitado pq ya no se comporta como tipo user, sino como referencia
 
   Place({
     Key key,
@@ -15,6 +15,6 @@ class Place {
     @required this.description,
     @required this.urlImage,
     this.likes,
-    this.userOwner,
+    //this.userOwner,
   });
 }
