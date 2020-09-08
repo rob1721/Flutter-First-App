@@ -47,6 +47,12 @@ class UserBloc implements Bloc {
   // ahora poniendo otro stream para acceder al anterior
   Stream<QuerySnapshot> get placesStream => placesListStream;
   List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
+  
+  Stream<QuerySnapshot> myPlacesListStream(String uid) =>
+    FirebaseFirestore.instance.collection(CloudFirestoreAPI().PLACES)
+    .where("userOwner", isEqualTo: FirebaseFirestore.instance.doc("${CloudFirestoreAPI().USERS}/$uid"))
+    .snapshots(); //se comportara como un metodo esperando recibir el id del user //where para comparar si este userOwner es igual al id del usuario
+    // linea 51-54 me convierte la cadena en un stream 
 
   // subiendo la imagen a firestore
   final _firebaseStorageRepository = FirebaseStorageRepository();
