@@ -11,8 +11,7 @@ class CardImageList extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    // ignore: todo
-    // TODO: implement build
+    // pasando todo el material a cloud_firestore_api para hacer la card_image lo mas generico posible
     double width = 300.0;
     double height = 350.0;
     double left = 20.0;
