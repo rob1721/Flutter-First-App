@@ -2,7 +2,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
+import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
 import 'package:platzi_trips_app/User/ui/widgets/profile_place.dart';
 
@@ -61,8 +63,8 @@ class CloudFirestoreAPI {
              // obteniendo ID Place con referencia del array
   }
 
-  // devolviendo la lista de places del user
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {
+  // devolviendo la lista de places del user (profile)
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) {
     List<ProfilePlace> profilePlaces = List<ProfilePlace>(); //instanciada
     placesListSnapshot.forEach((p /*p de places*/) {
       profilePlaces.add(ProfilePlace(
@@ -75,5 +77,28 @@ class CloudFirestoreAPI {
       ));
     });
     return profilePlaces;
+  }
+  // devolviendo la lista de lugares en pagina inicial (home)
+  List<CardImageWithFABIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) { // trayendo de firebase la lista de documentos
+    //lista q estamos esperando devolver instanciada
+    List<CardImageWithFABIcon> placesCard = List<CardImageWithFABIcon>();
+    double width = 300.0;
+    double height = 350.0;
+    double left = 20.0;
+    IconData iconData = Icons.favorite_border;
+
+    placesListSnapshot.forEach((p /*p de cada PLACE*/) {
+      placesCard.add(CardImageWithFABIcon(
+        pathImage: p.data()["urlImage"],
+        width: width,
+        height: height,
+        onPressedFABIcon: () {
+          //dando like
+        },
+        iconData: iconData,
+        left: left,
+      ));
+    });
+
   }
 }

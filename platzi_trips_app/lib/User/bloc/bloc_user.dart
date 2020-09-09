@@ -46,7 +46,7 @@ class UserBloc implements Bloc {
   Stream<QuerySnapshot> placesListStream = FirebaseFirestore.instance.collection(CloudFirestoreAPI().PLACES).snapshots(); //traeme una foto de todo lo q exista en la instancia de la base de datos cuya coleccion corresponda a places y escucha
   // ahora poniendo otro stream para acceder al anterior
   Stream<QuerySnapshot> get placesStream => placesListStream;
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
   
   Stream<QuerySnapshot> myPlacesListStream(String uid) =>
     FirebaseFirestore.instance.collection(CloudFirestoreAPI().PLACES)
