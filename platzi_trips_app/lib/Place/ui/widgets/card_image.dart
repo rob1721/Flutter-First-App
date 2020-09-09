@@ -35,7 +35,7 @@ class CardImageWithFABIcon extends StatelessWidget {
         image: DecorationImage(
           //ajustando la imagen y q no se corte
           fit: BoxFit.cover,
-          image: AssetImage(pathImage),
+          image: NetworkImage(pathImage),
         ),
         //AGREGANDO REDONDEO A LOS BORDES
         borderRadius: BorderRadius.all(Radius.circular(10.0)),

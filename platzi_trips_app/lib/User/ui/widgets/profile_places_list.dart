@@ -11,7 +11,7 @@ class ProfilePlacesList extends StatelessWidget {
   // obteniendo id del usuario + places
   UserBloc userBloc;
   User user;
-  ProfilePlacesList(@required this.user);
+  ProfilePlacesList(this.user); //@required ?
 
 
   Place place = Place(
@@ -57,7 +57,7 @@ class ProfilePlacesList extends StatelessWidget {
               return CircularProgressIndicator();
             default:
               return Column(
-                children: userBloc.buildMyPlaces(snapshot.data.documents),// automaticamente me devolvera una lista de toda la data en snapshot (lo q buscamos en cloud_firestore_api)
+                children: userBloc.buildPlaces(snapshot.data.documents),// automaticamente me devolvera una lista de todos los places
               );
           }
         },

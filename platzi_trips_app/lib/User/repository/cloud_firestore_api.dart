@@ -55,9 +55,9 @@ class CloudFirestoreAPI {
             DocumentReference refUsers = _db.collection(USERS).doc(user.uid); //obtengo la data del id del usuario
             refUsers.update({
               'myPlaces' : FieldValue.arrayUnion([
-                _db.doc("${PLACES}/${snapshot.id}"), // pusheando la referencia del user con sus places
-              ]),
-            });
+                _db.doc("$PLACES/${snapshot.id}"), // pusheando la referencia del user con sus places
+              ]), //arrayUnion
+            }); // update
           }),//then
         );//then 
              // obteniendo ID Place con referencia del array
@@ -93,12 +93,27 @@ class CloudFirestoreAPI {
         width: width,
         height: height,
         onPressedFABIcon: () {
-          //dando like
+          likePlace(p.id);
         },
         iconData: iconData,
         left: left,
       ));
     });
 
+    return placesCard;
+  }
+
+  // dando like
+  // se ingresa a la bd para encontrar el place con la id ingresada, se retorna un snapshot para determinar cuantos likes tiene y asi sumar uno
+  Future likePlace(String idPlace) async {
+    await _db.collection(PLACES).doc(idPlace).get()
+      .then((DocumentSnapshot ds /*documentSnapshot */) {
+        int likes = ds.data()["likes"];
+
+        _db.collection(PLACES).doc(idPlace)
+        .update({
+          'likes': likes+1, // sumando 1 a likes
+        });
+      });
   }
 }

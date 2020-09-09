@@ -10,6 +10,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/Place/repository/firebase_storage_repository.dart';
+import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
 import 'package:platzi_trips_app/User/repository/auth_repository.dart';
 import 'package:platzi_trips_app/User/repository/cloud_firestore_api.dart';
@@ -20,13 +21,13 @@ class UserBloc implements Bloc {
   // _auth_repository es la autentificacion q se hizo
   // ignore: non_constant_identifier_names
   final _auth_repository = AuthRepository();
-  auth.User current;
+  //auth.User current;
 
   // Flujo de datos STREAMS (en este caso proviene de firebase)
   // Stream - Firebase
   // StreamController
   // tipo de dato esperado:
-  Stream<auth.User> streamFirebase = auth.FirebaseAuth.instance.authStateChanges();
+  Stream<auth.User> streamFirebase = auth.FirebaseAuth.instance.authStateChanges(); // notificando está on
   // metodo q devuelve el objeto q acabo de crear
   Stream<auth.User> get authStatus => streamFirebase;
   // adquiriendo el currenUser
@@ -34,10 +35,7 @@ class UserBloc implements Bloc {
   
   // contendra todos los casos de uso de la app (o al menos del user):
     // caso 1.- hacer SignIn a la app google
-  Future<auth.User> signIn() {
-    // adquiriendo el currenUser
-    return _auth_repository.signInFirebase();
-  } 
+  Future<auth.User> signIn() => _auth_repository.signInFirebase();
 
     // caso 2.- registrar usuario en base de datos
   final _cloudFirestoreRepository = CloudFirestoreRepository();
@@ -45,14 +43,17 @@ class UserBloc implements Bloc {
   Future<void> updatePlaceData(Place place) => _cloudFirestoreRepository.updatePlaceData(place);
   Stream<QuerySnapshot> placesListStream = FirebaseFirestore.instance.collection(CloudFirestoreAPI().PLACES).snapshots(); //traeme una foto de todo lo q exista en la instancia de la base de datos cuya coleccion corresponda a places y escucha
   // ahora poniendo otro stream para acceder al anterior
+  // places of home
   Stream<QuerySnapshot> get placesStream => placesListStream;
-  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
+  List<CardImageWithFABIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
   
+  // places of user
   Stream<QuerySnapshot> myPlacesListStream(String uid) =>
     FirebaseFirestore.instance.collection(CloudFirestoreAPI().PLACES)
     .where("userOwner", isEqualTo: FirebaseFirestore.instance.doc("${CloudFirestoreAPI().USERS}/$uid"))
     .snapshots(); //se comportara como un metodo esperando recibir el id del user //where para comparar si este userOwner es igual al id del usuario
     // linea 51-54 me convierte la cadena en un stream 
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
 
   // subiendo la imagen a firestore
   final _firebaseStorageRepository = FirebaseStorageRepository();
