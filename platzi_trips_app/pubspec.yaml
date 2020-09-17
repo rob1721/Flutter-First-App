@@ -35,7 +35,7 @@ dependencies:
   cloud_firestore: ^0.14.0+2
   firebase_user_stream: ^1.0.0
   image_picker: ^0.6.7+7
-
+  cached_network_image: ^2.3.2+1
   
 dev_dependencies:
   flutter_test:
