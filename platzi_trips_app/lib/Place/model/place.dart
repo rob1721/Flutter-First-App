@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:platzi_trips_app/User/model/user.dart';
 
 class Place {
   String id;
@@ -7,6 +6,7 @@ class Place {
   String description;
   String urlImage;
   int likes;
+  bool liked;
   //User userOwner; quitado pq ya no se comporta como tipo user, sino como referencia
 
   Place({
@@ -15,6 +15,7 @@ class Place {
     @required this.description,
     @required this.urlImage,
     this.likes,
+    this.id,
     //this.userOwner,
   });
 }

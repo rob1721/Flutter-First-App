@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
-import 'profile_place.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 
 // ignore: must_be_immutable
@@ -57,7 +56,7 @@ class ProfilePlacesList extends StatelessWidget {
               return CircularProgressIndicator();
             default:
               return Column(
-                children: userBloc.buildPlaces(snapshot.data.documents),// automaticamente me devolvera una lista de todos los places
+                children: userBloc.buildMyPlaces(snapshot.data.documents),// automaticamente me devolvera una lista de todos los places
               );
           }
         },

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/widgets/floating_action_button_green.dart';
 
@@ -10,6 +11,7 @@ class CardImageWithFABIcon extends StatelessWidget {
   final String pathImage;
   final VoidCallback onPressedFABIcon; // FAB FloatingActionButton
   final IconData iconData;
+  bool internet = true; // flag para saber si viene de internet, asi guardar la foto en el cache y hacerla mas rapida la wea
 
   CardImageWithFABIcon({
     Key key,
@@ -18,7 +20,9 @@ class CardImageWithFABIcon extends StatelessWidget {
     @required this.height,
     @required this.onPressedFABIcon,
     @required this.iconData,
-    this.left
+    this.left,
+    this.internet
+    
   });
 
   @override
@@ -35,7 +39,9 @@ class CardImageWithFABIcon extends StatelessWidget {
         image: DecorationImage(
           //ajustando la imagen y q no se corte
           fit: BoxFit.cover,
-          image: NetworkImage(pathImage),
+          image: internet?
+                CachedNetworkImageProvider(pathImage):
+                AssetImage(pathImage),//NetworkImage(pathImage),
         ),
         //AGREGANDO REDONDEO A LOS BORDES
         borderRadius: BorderRadius.all(Radius.circular(10.0)),

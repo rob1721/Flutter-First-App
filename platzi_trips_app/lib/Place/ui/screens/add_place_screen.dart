@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/Place/ui/widgets/title_input_location.dart';
@@ -132,6 +131,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                     hintText: "Add Location",
                     iconData: Icons.location_on,
                     //controller: null // HASTA AHORA NO LO PONEN
+                    controller: null,
                     ),
                 ),
                 // boton
@@ -146,7 +146,7 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                         if (user != null) {
                           String uid = user.uid;
                           // path compuesto de id de user + nombre archivo (date)
-                          String path = "${uid}/${DateTime.now().toString()}.jpg"; // fijarse en la extension jpg
+                          String path = "$uid/${DateTime.now().toString()}.jpg"; // fijarse en la extension jpg
                           // 1) la imagen a firebase storage
                           // devolvera una url de la imagen
                           // devolviendo la imagen desde el 

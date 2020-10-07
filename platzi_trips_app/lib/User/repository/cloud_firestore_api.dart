@@ -2,9 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/Place/model/place.dart';
-import 'package:platzi_trips_app/Place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
 import 'package:platzi_trips_app/User/ui/widgets/profile_place.dart';
 
@@ -79,41 +77,47 @@ class CloudFirestoreAPI {
     return profilePlaces;
   }
   // devolviendo la lista de lugares en pagina inicial (home)
-  List<CardImageWithFABIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) { // trayendo de firebase la lista de documentos
+  List buildPlaces(List placesListSnapshot, User user) { // trayendo de firebase la lista de documentos
     //lista q estamos esperando devolver instanciada
-    List<CardImageWithFABIcon> placesCard = List<CardImageWithFABIcon>();
-    double width = 300.0;
-    double height = 350.0;
-    double left = 20.0;
-    IconData iconData = Icons.favorite_border;
+    List places = List();
 
     placesListSnapshot.forEach((p /*p de cada PLACE*/) {
-      placesCard.add(CardImageWithFABIcon(
-        pathImage: p.data()["urlImage"],
-        width: width,
-        height: height,
-        onPressedFABIcon: () {
-          likePlace(p.id);
-        },
-        iconData: iconData,
-        left: left,
-      ));
+      Place place = Place(
+        id: p.documentID,
+        name: p.data()["name"],
+        description: p.data()["description"],
+        urlImage: p.data()["urilImage"],
+        likes: p.data()["likes"]
+      );
+      // obteniendo lista de usuarios que dieron like
+      List usersLikedRefs = p.data()["usersLiked"];
+      place.liked = false;
+      // parra cada usersLikedRefs se analiza si el lugar está liked o no
+      usersLikedRefs?.forEach((drUL) {
+        if(user.uid == drUL.documentID) {
+          place.liked = true;
+        }
+      });
+      places.add(place);
     });
 
-    return placesCard;
+    return places;
   }
 
   // dando like
   // se ingresa a la bd para encontrar el place con la id ingresada, se retorna un snapshot para determinar cuantos likes tiene y asi sumar uno
-  Future likePlace(String idPlace) async {
-    await _db.collection(PLACES).doc(idPlace).get()
+  Future likePlace(Place place, String uid) async {
+    await _db.collection(PLACES).doc(place.id).get()
       .then((DocumentSnapshot ds /*documentSnapshot */) {
         int likes = ds.data()["likes"];
 
-        _db.collection(PLACES).doc(idPlace)
+        _db.collection(PLACES).doc(place.id)
         .update({
-          'likes': likes+1, // sumando 1 a likes
-        });
-      });
+          'likes': place.liked?likes+1:likes-1, // sumando 1 a likes
+          'usersLiked': place.liked?
+            FieldValue.arrayUnion([_db.doc("$USERS/$uid")]):
+            FieldValue.arrayRemove([_db.doc("$USERS/$uid")])
+        });// update
+      }); //likePlace
   }
 }

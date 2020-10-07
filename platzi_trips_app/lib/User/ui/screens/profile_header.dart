@@ -1,8 +1,6 @@
 // toda la informacion del usuario
 import 'package:flutter/material.dart';
 
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
 import 'package:platzi_trips_app/User/model/user.dart';
 import 'package:platzi_trips_app/User/ui/widgets/user_info.dart';
 import 'package:platzi_trips_app/User/ui/widgets/button_bar.dart';
@@ -13,6 +11,7 @@ class ProfileHeader extends StatelessWidget {
   // datos del usuario
   User user;
 
+  // ignore: invalid_required_positional_param
   ProfileHeader(@required this.user);
 
   @override
@@ -101,7 +100,7 @@ class ProfileHeader extends StatelessWidget {
       print("Logueado");
       print(snapshot.data);
       // trayendo la data del snapshot a user
-      user = User(name: snapshot.data.displayName, email: snapshot.data.email, photoURL: snapshot.data.photoUrl);
+      user = User(uid: snapshot.data.uid, name: snapshot.data.displayName, email: snapshot.data.email, photoURL: snapshot.data.photoUrl);
       final title = Text(
         'Profile',
         style: TextStyle(

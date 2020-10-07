@@ -7,6 +7,7 @@ import 'profile_header.dart';
 import 'package:platzi_trips_app/User/ui/widgets/profile_places_list.dart';
 import 'package:platzi_trips_app/User/ui/widgets/profile_background.dart';
 
+// ignore: must_be_immutable
 class ProfileTrips extends StatelessWidget {
   UserBloc userBloc;
   @override
@@ -29,6 +30,7 @@ class ProfileTrips extends StatelessWidget {
           case ConnectionState.active:
             return showProfileData(snapshot);
           default:
+            return showProfileData(snapshot);
         }
       }, //succionando los datos..
     );
