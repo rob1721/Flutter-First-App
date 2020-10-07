@@ -19,7 +19,7 @@ class DescriptionPlace extends StatelessWidget {
     //-------------------declarando las estrellas
     final star = Container( // margenes
       margin: EdgeInsets.only(
-        top: 323.0,
+        top: 340.0,
         right: 3.0
       ),
 
@@ -31,7 +31,7 @@ class DescriptionPlace extends StatelessWidget {
 
     final starHalf = Container(
       margin: EdgeInsets.only(
-        top: 323.0,
+        top: 340.0,
         right: 3.0
       ),
 
@@ -44,7 +44,7 @@ class DescriptionPlace extends StatelessWidget {
     // -------------------------------STARBORDER
     final starBorder = Container(
       margin: EdgeInsets.only(
-        top: 323.0,
+        top: 340.0,
         right: 3.0
       ),
 
@@ -85,7 +85,7 @@ class DescriptionPlace extends StatelessWidget {
         
         Container (
           margin: EdgeInsets.only(
-            top: 320.0,
+            top: 340.0,
             left: 20.0,
             right: 20.0
           ),
@@ -122,7 +122,7 @@ class DescriptionPlace extends StatelessWidget {
         titleStars,
         description,
         // se puede retornar el constructor directo
-        ButtonPurple("Navigate"),
+        ButtonPurple(buttonText: "Navigate", onPressed: () {},),
       ]
     );
   }

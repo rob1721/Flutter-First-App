@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 
 class FloatingActionButtonGreen extends StatefulWidget {
+
+  final IconData iconData;
+  final VoidCallback onPressed;
+
+  FloatingActionButtonGreen({
+    Key key,
+    @required this.iconData,
+    @required this.onPressed
+  });
+
   @override
   State<StatefulWidget> createState() {
     return _FloatingActionButtonGreen();
@@ -9,8 +19,15 @@ class FloatingActionButtonGreen extends StatefulWidget {
 
 class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
   //----------------------------------------VAR
-  bool _pressed = false;
-
+  //bool _pressed = false;
+  /*
+  void onPressedFav(){
+    Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Agregaste a tus Favoritos"),
+        )
+    );
+  }*/
   //----------------------------------------build
   @override
   Widget build(BuildContext context) {
@@ -18,15 +35,18 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
       backgroundColor: Color(0xFF11DA53),
       mini: true, // tamaño mini
       tooltip: "Fav", // mouse posicion
-      onPressed: onPressedFav, // comportamiento al apretar
+      // widget para stateful
+      onPressed: widget.onPressed, // comportamiento al apretar
       child: Icon(
-        this._pressed ? Icons.favorite : Icons.favorite_border
+        widget.iconData,
       ),
+      // al haber mas de un action button..implementar herotag
+      heroTag: null,
     );
   }
 
 //----------------------------------------onPressed
-  void onPressedFav(){
+  /*void onPressedFav(){
     setState(() {
       _pressed = !this._pressed;
     });
@@ -37,5 +57,5 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
             
           )
         );
-  }
+  }*/
 }

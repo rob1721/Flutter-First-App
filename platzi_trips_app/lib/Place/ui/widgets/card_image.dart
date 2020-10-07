@@ -1,29 +1,47 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_app/widgets/floating_action_button_green.dart';
 
 // ignore: must_be_immutable
-class CardImage extends StatelessWidget {
+class CardImageWithFABIcon extends StatelessWidget {
 
-  String pathImage = "assets/img/a.jpg";
+  final double height; // los datos requeridos deben estar en final
+  final double width;
+  final double left;
+  final String pathImage;
+  final VoidCallback onPressedFABIcon; // FAB FloatingActionButton
+  final IconData iconData;
+  bool internet = true; // flag para saber si viene de internet, asi guardar la foto en el cache y hacerla mas rapida la wea
 
-  CardImage(this.pathImage);
+  CardImageWithFABIcon({
+    Key key,
+    @required this.pathImage,
+    @required this.width,
+    @required this.height,
+    @required this.onPressedFABIcon,
+    @required this.iconData,
+    this.left,
+    this.internet
+    
+  });
 
   @override
   Widget build(BuildContext context) {
 
     final card = Container(
-      height: 350.0,
-      width: 250.0,
+      height: height,
+      width: width,
       margin: EdgeInsets.only(
-        top: 80.0,
-        left: 20.0
+        left: left
       ),
 
       decoration: BoxDecoration(
         image: DecorationImage(
           //ajustando la imagen y q no se corte
           fit: BoxFit.cover,
-          image: AssetImage(pathImage),
+          image: internet?
+                CachedNetworkImageProvider(pathImage):
+                AssetImage(pathImage),//NetworkImage(pathImage),
         ),
         //AGREGANDO REDONDEO A LOS BORDES
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -44,7 +62,7 @@ class CardImage extends StatelessWidget {
       alignment: Alignment(0.9, 1.1),
       children: <Widget>[
         card,
-        FloatingActionButtonGreen(),
+        FloatingActionButtonGreen(iconData: iconData, onPressed: onPressedFABIcon,),
       ],
     );
   }

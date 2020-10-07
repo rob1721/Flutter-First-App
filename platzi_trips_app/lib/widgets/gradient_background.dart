@@ -6,10 +6,27 @@ class GradientBackground extends StatelessWidget {
   // definiendo la altura del background
   double height = 0.0;
 
-  GradientBackground(this.title, this.height);
+  // constructor
+  
+  GradientBackground({
+    Key key,
+    this.height
+  });
+
   @override
   Widget build(BuildContext context) {
+
+    // altura de cualquier celular!!!
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidht = MediaQuery.of(context).size.width;
+
+    // flag para height = null -> full screen
+    if (height == null) {
+      height = screenHeight;
+    }
+
     return Container(
+      width: screenWidht,
       height: height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -20,16 +37,28 @@ class GradientBackground extends StatelessWidget {
             //Color(0X00A321), //tono personal, medio verde agua
           ],
           // juega con los numeros
-          begin: FractionalOffset(0.2, 0.4), //custom
+          //begin: FractionalOffset(0.2, 0.4), //custom
           //end: FractionalOffset(0.4, 3.5),
-          //begin: FractionalOffset(0.2, 0.0), //original
+          begin: FractionalOffset(0.2, 0.0), //original
           end: FractionalOffset(1.0, 0.6),
           stops: [0.0, 0.6], // orientacion del gradiente
           tileMode: TileMode.clamp, // color de relleno si pasa algo con el gradiente..
         )
       ),
 
-      child: Text(
+      child: FittedBox(
+        fit: BoxFit.none,
+        alignment: Alignment(-1.5, -0.8),
+        child: Container(
+          width: screenHeight,
+          height: screenHeight,
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(0, 0, 0, 0.05),
+            borderRadius: BorderRadius.circular(screenHeight / 2),
+          ),
+        )
+      )
+      /*Text(
         title,
         style: TextStyle(
           color: Colors.white,
@@ -37,9 +66,9 @@ class GradientBackground extends StatelessWidget {
           fontFamily: "Lato",
           fontWeight: FontWeight.bold
         ),
-      ),
+      ),*/
       //alineacion del texto
-      alignment: Alignment(-0.9, -0.6),
+      //alignment: Alignment(-0.9, -0.6),
     );
   }
 }

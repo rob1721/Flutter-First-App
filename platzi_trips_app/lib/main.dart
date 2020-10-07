@@ -11,6 +11,7 @@
 // ignore: unused_import
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'platzi_trips.dart';
@@ -23,7 +24,10 @@ import 'package:platzi_trips_app/User/bloc/bloc_user.dart';
 import 'package:platzi_trips_app/User/ui/screens/sign_in_screen.dart';
 
 // hace que todo lo demas funcione, es tu método main
-void main() {
+void main() async {
+  // inicializando la app desde firebase y luego nuestra app
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -52,6 +56,7 @@ class MyApp extends StatelessWidget {
       //q widget hijo quiero exponer
       child: MaterialApp(
         title: 'Flutter Demo',
+        //routes: {},
         // home es la estructura de la app, su composision
           // Scafold es como una pestaña
         home: SignInScreen(),

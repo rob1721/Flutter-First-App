@@ -5,22 +5,22 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class ButtonPurple extends StatelessWidget {
 
-  String buttonText = "Navigate";
+  final String buttonText;
+  final VoidCallback onPressed;
 
+  ButtonPurple({
+    Key key,
+    @required this.buttonText,
+    @required this.onPressed
+  });
   //constructor
-  ButtonPurple(this.buttonText);
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       //dando propiedades, en este caso, 
       //reaccionando al tap
-      onTap: () {
-        Scaffold.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Navegando..."),
-          )
-        );
-      },
+      onTap: onPressed,
       //daremos la forma que queremos q tenga el
       //boton
       child: Container(
